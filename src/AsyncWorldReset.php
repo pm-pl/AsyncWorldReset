@@ -26,6 +26,8 @@ class AsyncWorldReset extends PluginBase
 {
     use SingletonTrait;
 
+    protected static bool $useDiscordWebhooks = false;
+
     /**
      * @var string[]
      */
@@ -54,6 +56,8 @@ class AsyncWorldReset extends PluginBase
             $this->getServer()->getPluginManager()->disablePlugin($this);
             return;
         }
+
+        self::$useDiscordWebhooks = (bool)$this->getConfig()->get("use-discord-webhooks", false);
 
         self::$worlds = $this->getConfig()->get("worlds", []);
 
@@ -108,7 +112,7 @@ class AsyncWorldReset extends PluginBase
 
         $worldMgr->loadWorld($worldName);
         $finalMt = (string)round(microtime(true) - $mt, 3);
-        self::getInstance()->sendResetWebhook($worldName, $finalMt);
+        if (self::$useDiscordWebhooks) self::getInstance()->sendResetWebhook($worldName, $finalMt);
         $logger->warning("Successfully resetted world " . $worldName . " in " . $finalMt . "s!");
     }
 

@@ -1,0 +1,12 @@
+--- # Poggit-CI Manifest. Open the CI at https://poggit.pmmp.io/ci/supercrafter333/AsyncWorldReset
+build-by-default: true
+branches:
+- master
+projects:
+  AsyncWorldReset:
+    icon: "icon.png"
+    path: ""
+    libs:
+      - src: https://poggit.pmmp.io/ci/supercrafter333/DiscordWebhooksX/DiscordWebhooksX
+        version: ^1.0.0
+...

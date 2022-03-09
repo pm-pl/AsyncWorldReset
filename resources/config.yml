@@ -1,0 +1,54 @@
+# AsyncWorldReset (c) 2022 by supercrafter333 - Made with <3 in Germany
+
+
+
+
+### Timezone & Date configuration ###
+
+# Timezone
+### Here you can choose your timezone. [default: America/New_York]
+timezone: 'America/New_York'
+
+# World reset dates
+### Dates should be added like that: ["H:i:s"] (H = hour; i = minute; s = second)
+reset-dates: ["0:0:0", "12:0:0"]
+
+#####################################
+
+
+
+### World configuration ###
+
+# Worlds to reset
+### Here you can insert the world that you like to reset (WARNING: You have to put the world as ZIP-Archive in the 'worlds' directory of this plugin)
+worlds: []
+
+###########################
+
+
+
+### Discord-Webhook configuration ###
+
+# Would you like to use discord webhooks? [default: false]
+use-discord-webhooks: false
+
+# If 'use-discord-webhooks' is true you have to insert the webhook-url here
+discord-webhook-url: ""
+
+# Webhook configuration
+discord-webhook:
+    title: "World-Reset"
+    message: "The world `{world}` was successfully resetted in `{seconds}` seconds!"
+    color: 16777215
+
+#####################################
+
+
+
+### Message configuration ###
+
+# '/worldreset' - Command
+msg-worldreset-failed: "§cNo worlds to reset!"
+msg-worldreset-success: "§aResetting worlds..."
+
+#############################

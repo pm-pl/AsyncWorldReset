@@ -1,0 +1,14 @@
+name: AsyncWorldReset
+version: 1.0.0
+api: 4.0.0
+main: supercrafter333\AsyncWorldReset\AsyncWorldReset
+src-namespace-prefix: supercrafter333\AsyncWorldReset
+author: supercrafter333
+
+description: "A PocketMine-MP plugin that allows you to reset your worlds at specific times. It's asynchronous and therefore extremely fast."
+website: "https://www.github.com/supercrafter333/AsyncWorldReset"
+
+permissions:
+  worldreset.cmd:
+    default: op
+    description: Command permission

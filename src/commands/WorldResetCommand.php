@@ -14,7 +14,7 @@ class WorldResetCommand extends Command implements PluginOwned
 
     public function __construct(string $name, Translatable|string $description = "", Translatable|string|null $usageMessage = null, array $aliases = [])
     {
-        $this->setPermission("worldreset.cmd");
+        $this->setPermission("asnycworldreset.worldreset.cmd");
         parent::__construct($name, $description, $usageMessage, $aliases);
     }
 

@@ -9,6 +9,6 @@ description: "A PocketMine-MP plugin that allows you to reset your worlds at spe
 website: "https://www.github.com/supercrafter333/AsyncWorldReset"
 
 permissions:
-  worldreset.cmd:
+  asnycworldreset.worldreset.cmd:
     default: op
     description: Command permission

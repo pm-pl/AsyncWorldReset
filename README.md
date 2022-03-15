@@ -20,7 +20,7 @@
 ### Default Commands
 | **Command**   | **Description**                | **Permission**            |
 |---------------|---|---|
-| `/worldreset` |Resets all chosen worlds to reset.|`worldreset.cmd`|
+| `/worldreset` |Resets all chosen worlds to reset.|`asnycworldreset.worldreset.cmd`|
 
 ### Bugreport
 You've found a Bug?

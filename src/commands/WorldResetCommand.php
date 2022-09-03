@@ -30,11 +30,10 @@ class WorldResetCommand extends Command implements PluginOwned
 
         $cfg = $this->getOwningPlugin()->getConfig();
 
-        if (AsyncWorldReset::resetWorlds()) {
+        if (AsyncWorldReset::resetWorlds())
             $s->sendMessage($cfg->get("msg-worldreset-success"));
-        } else {
+        else
             $s->sendMessage($cfg->get("msg-worldreset-failed"));
-        }
     }
 
     /**

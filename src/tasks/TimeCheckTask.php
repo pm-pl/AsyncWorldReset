@@ -23,8 +23,7 @@ class TimeCheckTask extends Task
         $resetDates = $cfg->get("reset-dates", []);
         $timeString = $time->format("H:i:s");
 
-        if (in_array($timeString, $resetDates)) {
+        if (in_array($timeString, $resetDates))
             AsyncWorldReset::resetWorlds();
-        }
     }
 }

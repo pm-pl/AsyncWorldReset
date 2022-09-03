@@ -3,7 +3,6 @@
 namespace supercrafter333\AsyncWorldReset;
 
 use pocketmine\plugin\PluginBase;
-use pocketmine\Server;
 use pocketmine\utils\SingletonTrait;
 use supercrafter333\AsyncWorldReset\commands\WorldResetCommand;
 use supercrafter333\AsyncWorldReset\tasks\asynchronous\ExtractWorldTask;
@@ -19,9 +18,6 @@ use function microtime;
 use function mkdir;
 use function str_replace;
 
-/**
- *
- */
 class AsyncWorldReset extends PluginBase
 {
     use SingletonTrait;
@@ -106,14 +102,16 @@ class AsyncWorldReset extends PluginBase
         if ($worldMgr->isWorldLoaded($worldName))
             $worldMgr->unloadWorld($worldMgr->getWorldByName($worldName));
 
-        $server->getAsyncPool()->submitTask(new RemoveWorldTask($worldPath));
-
-        $server->getAsyncPool()->submitTask(new ExtractWorldTask($server->getDataPath(), self::getInstance()->getDataFolder() . "worlds/" . $worldName . ".zip"));
-
-        $worldMgr->loadWorld($worldName);
-        $finalMt = (string)round(microtime(true) - $mt, 3);
-        if (self::$useDiscordWebhooks) self::getInstance()->sendResetWebhook($worldName, $finalMt);
-        $logger->warning("Successfully resetted world " . $worldName . " in " . $finalMt . "s!");
+        $server->getAsyncPool()->submitTask(new RemoveWorldTask($worldPath,
+            function () use ($server, $worldName, $mt, $logger, $worldMgr) {
+                $server->getAsyncPool()->submitTask(new ExtractWorldTask($server->getDataPath(), self::getInstance()->getDataFolder() . "worlds/" . $worldName . ".zip",
+                    function () use ($mt, $server, $worldName, $logger, $worldMgr) {
+                        $worldMgr->loadWorld($worldName);
+                        $finalMt = (string)round(microtime(true) - $mt, 3);
+                        if (self::$useDiscordWebhooks) self::getInstance()->sendResetWebhook($worldName, $finalMt);
+                        $logger->warning("Successfully resetted world " . $worldName . " in " . $finalMt . "s!");
+                    }));
+            }));
     }
 
     /**

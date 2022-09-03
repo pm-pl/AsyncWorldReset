@@ -2,6 +2,7 @@
 
 namespace supercrafter333\AsyncWorldReset\tasks\asynchronous;
 
+use Closure;
 use pocketmine\scheduler\AsyncTask;
 use function closedir;
 use function is_dir;
@@ -15,8 +16,9 @@ class RemoveWorldTask extends AsyncTask
 
     /**
      * @param string $worldPath
+     * @param Closure $onSubmit
      */
-    public function __construct(private string $worldPath) {}
+    public function __construct(private string $worldPath, private Closure $onSubmit) {}
 
     /**
      * @return void
@@ -44,5 +46,10 @@ class RemoveWorldTask extends AsyncTask
         } else {
             unlink($file);
         }
+    }
+
+    public function onCompletion(): void
+    {
+        $this->onSubmit->call($this);
     }
 }

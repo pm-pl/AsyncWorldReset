@@ -2,6 +2,7 @@
 
 namespace supercrafter333\AsyncWorldReset\tasks\asynchronous;
 
+use Closure;
 use pocketmine\scheduler\AsyncTask;
 use ZipArchive;
 
@@ -11,8 +12,9 @@ class ExtractWorldTask extends AsyncTask
     /**
      * @param string $serverPath
      * @param string $worldArchPath
+     * @param Closure $onSubmit
      */
-    public function __construct(private string $serverPath, private string $worldArchPath) {}
+    public function __construct(private string $serverPath, private string $worldArchPath, private Closure $onSubmit) {}
 
 
     /**
@@ -24,5 +26,10 @@ class ExtractWorldTask extends AsyncTask
         $zip->open($this->worldArchPath);
         $zip->extractTo($this->serverPath . "worlds");
         $zip->close();
+    }
+
+    public function onCompletion(): void
+    {
+        $this->onSubmit->call($this);
     }
 }

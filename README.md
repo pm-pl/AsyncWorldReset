@@ -1,5 +1,5 @@
 [![Discord](https://img.shields.io/badge/chat-on%20discord-7289da.svg)](https://discord.gg/ca6cWPpERp)
-# <img src="/icon.png" width="24px"/> AsyncWorldReset - v1.0.1 [![](https://poggit.pmmp.io/shield.state/AsyncWorldReset)](https://poggit.pmmp.io/p/AsyncWorldReset) [![](https://poggit.pmmp.io/shield.dl.total/AsyncWorldReset)](https://poggit.pmmp.io/p/AsyncWorldReset)
+# <img src="/icon.png" width="24px"/> AsyncWorldReset - v1.0.2 [![](https://poggit.pmmp.io/shield.state/AsyncWorldReset)](https://poggit.pmmp.io/p/AsyncWorldReset) [![](https://poggit.pmmp.io/shield.dl.total/AsyncWorldReset)](https://poggit.pmmp.io/p/AsyncWorldReset)
 
 
 **A PocketMine-MP plugin that allows you to reset your worlds at specific times. It's asynchronous and therefore extremely fast.**

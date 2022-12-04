@@ -22,7 +22,7 @@ class AsyncWorldReset extends PluginBase
 {
     use SingletonTrait;
 
-    protected static bool $useDiscordWebhooks = false;
+    public static bool $useDiscordWebhooks = false;
 
     /**
      * @var string[]
@@ -104,11 +104,11 @@ class AsyncWorldReset extends PluginBase
 
         $server->getAsyncPool()->submitTask(new RemoveWorldTask($worldPath,
             function () use ($server, $worldName, $mt, $logger, $worldMgr) {
-                $server->getAsyncPool()->submitTask(new ExtractWorldTask($server->getDataPath(), self::getInstance()->getDataFolder() . "worlds/" . $worldName . ".zip",
+                $server->getAsyncPool()->submitTask(new ExtractWorldTask($server->getDataPath(), AsyncWorldReset::getInstance()->getDataFolder() . "worlds/" . $worldName . ".zip",
                     function () use ($mt, $server, $worldName, $logger, $worldMgr) {
                         $worldMgr->loadWorld($worldName);
                         $finalMt = (string)round(microtime(true) - $mt, 3);
-                        if (self::$useDiscordWebhooks) self::getInstance()->sendResetWebhook($worldName, $finalMt);
+                        if (AsyncWorldReset::$useDiscordWebhooks) AsyncWorldReset::getInstance()->sendResetWebhook($worldName, $finalMt);
                         $logger->warning("Successfully resetted world " . $worldName . " in " . $finalMt . "s!");
                     }));
             }));

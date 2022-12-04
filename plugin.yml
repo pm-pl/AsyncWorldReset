@@ -1,6 +1,6 @@
 name: AsyncWorldReset
 version: 1.0.3
-api: 4.0.0
+api: [4.0.0, 5.0.0]
 main: supercrafter333\AsyncWorldReset\AsyncWorldReset
 src-namespace-prefix: supercrafter333\AsyncWorldReset
 author: supercrafter333
